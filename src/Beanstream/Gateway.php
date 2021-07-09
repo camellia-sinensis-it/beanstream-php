@@ -12,52 +12,55 @@ require_once 'api/Reporting.php';
 
 /**
  * Gateway class - Main class to facilitate comms with Beanstream Gateway,
- *  
+ *
  * @author Kevin Saliba
  */
 class Gateway {
 
 	/**
      * Config object
-	 * 
+	 *
 	 * Holds mid, apikey, platform, api version
-     * 
+     *
      * @var	\Beanstream\Configuration	$_config
      */
     protected $_config;
-    
-	
+
+
 	/**
 	 * API Objects
-	 * 
+	 *
 	 * Holds API objects with appropriate config
-	 * 
+	 *
 	 * @var	\Beanstream\Payments	$_paymentsAPI
 	 * @var	\Beanstream\Profiles	$_profilesAPI
 	 * @var	\Beanstream\Reporting 	$_reportingAPI
 	 */
-	protected $_paymentsAPI; 
-	protected $_profilesAPI; 
-	protected $_reportingAPI; 
+	protected $_paymentsAPI;
+	protected $_profilesAPI;
+	protected $_reportingAPI;
 
 
     /**
      * Constructor
-     * 
+     *
      * @param string $merchantId Merchant ID
      * @param string $apiKey API Access Passcode
      * @param string $platform API Platform (default 'www')
      * @param string $version API Version (default 'v1')
      */
-    public function __construct($merchantId = '', $apiKey, $platform, $version) {
+    public function __construct($merchantId, $apiKey, $platform, $version) {
 		//set configs
+        if (!$merchantId) {
+            $merchantId = '';
+        }
 		$this->_config = new Configuration();
 		$this->_config->setMerchantId($merchantId);
 		$this->_config->setApiKey($apiKey);
 		$this->_config->setPlatform($platform);
 		$this->_config->setApiVersion($version);
     }
-	
+
 
 	/**
 	 * getConfig() function
@@ -67,17 +70,17 @@ class Gateway {
 	public function getConfig() {
 		return $this->_config;
 	}
-	
+
 	/**
 	 * payments() function
-	 * 
+	 *
 	 * Public facing function to return the configured payment API
 	 * All comms with the Payments API will go through this function
 	 *
 	 * @return \Beanstream\Payments this gateway's payment api object
-	 */	
+	 */
 	public function payments() {
-		//check to see if we already have it created 
+		//check to see if we already have it created
 		if (is_null($this->_paymentsAPI)) {
 			//if we don't, create it
 			$this->_paymentsAPI = new Payments($this->_config);
@@ -87,14 +90,14 @@ class Gateway {
 
 	/**
 	 * profiles() function.
-	 * 
+	 *
 	 * Public facing function to return the configured profiles API
 	 * All comms with the Profiles API will go through this function
 	 *
 	 * @return \Beanstream\Profiles this gateway's profiles api object
-	 */	
+	 */
 	public function profiles() {
-		//check to see if we already have it created 
+		//check to see if we already have it created
 		if (is_null($this->_profilesAPI)) {
 			//if we don't, create it
 			$this->_profilesAPI = new Profiles($this->_config);
@@ -105,19 +108,19 @@ class Gateway {
 
 	/**
 	 * reporting() function
-	 * 
+	 *
 	 * Public facing function to return the configured reporting API
 	 * All comms with the Reporting API will go through this function
 	 *
 	 * @return \Beanstream\Reporting this gateway's reporting api object
-	 */	
+	 */
 	public function reporting() {
-		//check to see if we already have it created 
+		//check to see if we already have it created
 		if (is_null($this->_reportingAPI)) {
 			//if we don't, create it
 			$this->_reportingAPI = new Reporting($this->_config);
 		}
 		return $this->_reportingAPI;
 	}
-	
+
 }
