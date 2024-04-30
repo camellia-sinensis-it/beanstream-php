@@ -64,8 +64,3 @@ class ConfigurationException extends Exception {}
  * ConnectorException class
  */
 class ConnectorException extends Exception {}
-
-/**
- * ApiException class
- */
-class ApiException extends Exception {}

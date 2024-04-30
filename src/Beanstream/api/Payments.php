@@ -286,7 +286,7 @@ class Payments {
 
 		//check if we're good
 		if ( !isset($result['token']) ) { //no token received
-            throw new ApiException('No Token Received', 0);
+            throw new ApiException('No Token Received', 0, $result);
 		}
 
 		//return Legato token
