@@ -10,7 +10,7 @@ class ApiException extends Exception
 {
     private $fullResponse;
 
-    public function __construct($message, $code = 0, $fullResponse)
+    public function __construct($message, $code = 0, $fullResponse = null)
     {
         parent::__construct($message, $code);
         $this->fullResponse = $fullResponse;
