@@ -23,13 +23,17 @@ class ApiException extends Exception
 
     public function get3DSecureStatus(): ?string
     {
-        if (!array_key_exists('3d_secure', $this->fullResponse)) {
+        if (!is_array($this->fullResponse)) {
             return null;
         }
-        $threeDSecure = $this->fullResponse['3d_secure'];
-        if (!array_key_exists('status', $threeDSecure)) {
+
+        $threeDSecure = $this->fullResponse['3d_secure'] ?? null;
+        if (!is_array($threeDSecure)) {
             return null;
         }
-        return $threeDSecure['status'];
+
+        $status = $threeDSecure['status'] ?? null;
+
+        return is_string($status) ? $status : null;
     }
 }
