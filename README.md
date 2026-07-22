@@ -3,8 +3,6 @@ Bambora PHP API
 
 Composer ready PHP wrapper for [Bambora NA Payment API](https://dev.na.bambora.com/docs/references/).
 
-Supports PHP 8.2, 8.3, and 8.4.
-
 ## Installation
 
 The recommended way to install the library is using [Composer](https://getcomposer.org).
