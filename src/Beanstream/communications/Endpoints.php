@@ -27,6 +27,7 @@ class Endpoints {
 	 * @var	string	$voidsURL
 	 * @var	string	$profileURI
 	 * @var	string	$cardsURI
+	 * @var	string	$cardURI
 	 * @var	string	$reportsURL
 	 * @var	string	$continuationsURL
 	 * @var	string	$tokenizationURL
@@ -40,6 +41,7 @@ class Endpoints {
 	protected $voidsURL;
 	protected $profileURI;
 	protected $cardsURI;
+	protected $cardURI;
 	protected $reportsURL;
 	protected $continuationsURL;
 	protected $tokenizationURL;
