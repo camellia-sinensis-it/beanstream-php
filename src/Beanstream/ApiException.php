@@ -32,6 +32,6 @@ class ApiException extends Exception
             return null;
         }
 
-        return $threeDSecure['status'];
+        return $threeDSecure['status'] ?? null;
     }
 }
